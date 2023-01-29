@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for table in tables %}
+    {{table|safe}}
+{% endfor %}
+
+  <script>
+    function preview() {
+        if (event.target.id == "formImage") {
+            image.src = URL.createObjectURL(event.target.files[0]);
+        } else {
+            template.src = URL.createObjectURL(event.target.files[0]);
+        }        
+    }
+
+    function clearImage() {
+        if (event.target.id == "btnImage") {
+            //document.getElementById("image").value = null;
+            image.src = "https://mdbootstrap.com/img/Photos/Others/placeholder.jpg";
+        } else {
+            //document.getElementById("template").value = null;
+            template.src = "https://mdbootstrap.com/img/Photos/Others/placeholder.jpg";
+        }    
+
+    }
+</script>
+
+{% endblock %}
+
+

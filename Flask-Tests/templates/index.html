@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-sm">
+        <div class="form-group">
+            <label for="Image" class="form-label">Upload Signal 1 (Template)</label>
+            <input class="form-control" type="file" id="formTemplate" name="template" onchange="preview()" accept="image/*" capture>
+            <button id="btnTemplate" onclick="clearImage()" class="btn btn-primary mt-3">Clear Template</button>
+        </div>
+        <img id="template" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg" class="img-fluid" />
+      </div>
+      <div class="col-sm">
+        <div class="form-group">
+            <label for="Image" class="form-label">Upload Signal 2 (Image)</label>
+            <input class="form-control" type="file" id="formImage" name="image"  onchange="preview()" accept="image/*" capture>
+            <button id="btnImage" onclick="clearImage()" class="btn btn-primary mt-3">Clear Image</button>
+        </div>
+        <img id="image" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg" class="img-fluid" />
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="Text" class="form-label">True Correlation Label</label>
+        <input class="form-control" type="text" id="forText" name="text" placeholder="value between 0 and 1, example: 0.6">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </div>
+</form>
+
+  <script>
+    function preview() {
+        if (event.target.id == "formImage") {
+            image.src = URL.createObjectURL(event.target.files[0]);
+        } else {
+            template.src = URL.createObjectURL(event.target.files[0]);
+        }        
+    }
+
+    function clearImage() {
+        if (event.target.id == "btnImage") {
+            //document.getElementById("image").value = null;
+            image.src = "https://mdbootstrap.com/img/Photos/Others/placeholder.jpg";
+        } else {
+            //document.getElementById("template").value = null;
+            template.src = "https://mdbootstrap.com/img/Photos/Others/placeholder.jpg";
+        }    
+
+    }
+</script>
+
+{% endblock %}
+
+
